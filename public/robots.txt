@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.tusgino.tech
+
+# Sitemaps
+Sitemap: https://www.tusgino.tech/sitemap.xml
