@@ -1,3 +1,4 @@
+import { WavingHandOutlined } from "@mui/icons-material";
 import { createPageClap, getPageClap, incrementClap } from "@services/clap";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useState } from "react";
@@ -42,7 +43,7 @@ function Clap() {
     <div className="mt-4">
       <button onClick={handleClap}>
         <div className="flex items-center gap-1">
-          <span className="material-symbols-outlined">waving_hand</span>
+          <WavingHandOutlined />
           <span>{clapCount}</span>
         </div>
       </button>
