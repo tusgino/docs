@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+import Clap from "./components/clap/clap";
 
 const config: DocsThemeConfig = {
   logo: () => {
@@ -57,13 +58,31 @@ const config: DocsThemeConfig = {
     title: () => {
       const { locale } = useRouter();
       return <>{locale === "vi" ? "Nội dung" : "Content"}</>;
-    }
+    },
+    backToTop: true,
   },
   gitTimestamp: ({ timestamp }) => {
     const { locale } = useRouter();
     const date = new Date(timestamp).toLocaleString(locale);
     return <>{locale === "vi" ? `Cập nhật lần cuối: ${date}` : `Last updated: ${date}`}</>;
   },
+  themeSwitch: {
+    useOptions: () => {
+      const { locale } = useRouter();
+      return {
+        dark: locale === "vi" ? "Tối" : "Dark",
+        light: locale === "vi" ? "Sáng" : "Light",
+        system: locale === "vi" ? "Hệ thống" : "System",
+      };
+    }
+  },
+  components: {
+    Clap: () => {
+      return (
+        <Clap />
+      )
+    }
+  }
 };
 
 export default config;
