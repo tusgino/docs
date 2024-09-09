@@ -1,50 +1,39 @@
 import { WavingHandOutlined } from "@mui/icons-material";
-import { createPageClap, getPageClap, incrementClap } from "@services/clap";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAndCreatePageClap } from "../../services/clap";
+import { clapSelector } from "../../store/claps/selector";
+import { getClaps, incrementClap } from "../../store/claps/slice";
+
 
 function Clap() {
-  const [clapCount, setClapCount] = useState(0);
   const { pathname } = useRouter();
+  const clap = useSelector(clapSelector(pathname));
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchClapData = async () => {
-      try {
-        const pageClap = await getPageClap(pathname);
-        if (pageClap) {
-          setClapCount(pageClap.clap_count);
-        }
+  const handleClap = async () => {
+    dispatch(incrementClap(pathname));
+  };
 
-        if (!pageClap) {
-          await createPageClap({
-            slug: pathname,
-            clap_count: 0,
-            last_clapped_at: new Date().toISOString(),
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching clap data:", error);
+  React.useEffect(() => {
+    const init = async () => {
+      const isCreate = await checkAndCreatePageClap(pathname);
+
+      if (isCreate) {
+        dispatch(getClaps(undefined));
       }
-    };
-
-    fetchClapData();
-  }, [pathname]);
-
-  const handleClap = useCallback(async () => {
-    try {
-      setClapCount((prev) => prev + 1);
-      await incrementClap(pathname);
-    } catch (error) {
-      console.error("Error incrementing clap:", error);
     }
-  }, [pathname]);
+
+    init();
+  }, [])
 
   return (
     <div className="mt-4">
       <button onClick={handleClap}>
         <div className="flex items-center gap-1">
           <WavingHandOutlined />
-          <span>{clapCount}</span>
+          <span>{clap?.clap_count || 0}</span>
         </div>
       </button>
     </div>
