@@ -34,7 +34,7 @@ const config: DocsThemeConfig = {
         <meta property="description" content={frontMatter.description || ""} />
         <meta property="keywords" content={frontMatter.keywords || ""} />
         <link rel="icon" href="/logo.png" type="image/png" />
-        <script src="https://messenger.stg.chative.io/static/v1.0/channels/sc7c71688-e8f7-4e12-afe5-c534d5640d3a/messenger.js?mode=livechat" defer></script>
+        <script src="https://messenger.svc.chative.io/static/v1.0/channels/s3bdde97e-894d-4092-a021-d7c04cc2602f/messenger.js?mode=livechat"></script>
       </>
     );
   },
