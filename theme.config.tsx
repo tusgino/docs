@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   logo: () => {
     return (
       <div className="flex justify-between gap-2 items-center">
-        <img src="/logo.svg" alt="Logo" className="h-8 w-8" />
+        <img src="/logo.png" alt="Logo" className="h-8 w-8" />
         <span className="mr-2 font-extrabold hidden md:inline">Tusgino</span>
       </div>
     );

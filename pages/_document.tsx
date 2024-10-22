@@ -21,6 +21,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
           />
+          <script src="https://messenger.svc.chative.io/static/v1.0/channels/s3bdde97e-894d-4092-a021-d7c04cc2602f/messenger.js?mode=livechat"></script>
         </Head>
         <body>
           <Main />
